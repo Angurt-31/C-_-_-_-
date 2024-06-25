@@ -71,13 +71,14 @@ int main(){
     printf("Enter orientation (0 for horizontal, 1 for vertical): ");
     scanf("%d", &orientation);
 
-    printf("Enter starting row (A-K): ");
+    printf("Enter starting row (A-J): ");
     char row_char;
     scanf(" %c", &row_char);
     row = row_char - 'A' + 2;
 
-    printf("Enter starting column (1-12): ");
+    printf("Enter starting column (1-10): ");
     scanf("%d", &col);
+    col = col + 1;
 
     place_ship(row, col, orientation, ship_size);
 
