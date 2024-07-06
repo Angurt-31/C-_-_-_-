@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+#define BUFFER_SIZE 1024
+
+
+void print_usage(char *program_name) {
+    fprintf(stderr, "Usage: %s <file> [<file> ...]\n", program_name);
+}
+
+
+void concat_file(char *filename) {
+    FILE *fp = fopen(filename, "r");
+    if (fp == NULL) {
+        perror("Error opening file");
+        return;
+    }
+
+    char buffer[BUFFER_SIZE];
+    while (fgets(buffer, BUFFER_SIZE, fp) != NULL) {
+        printf("%s", buffer);
+    }
+
+    fclose(fp);
+}
+
+int main(int argc, char *argv[]) {
+    if (argc < 2) {
+        print_usage(argv[0]);
+        return 1;
+    }
+
+    for (int i = 1; i < argc; i++) {
+        concat_file(argv[i]);
+    }
+
+    return 0;
+}
